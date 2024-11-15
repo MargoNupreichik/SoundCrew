@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block us_title %}
+Результат запроса
+{% endblock %}
+
+{% block content %}
+<h3>Ваш запрос: {{ phrase }}</h3>
+<h3>Название {% if param_type=='song'%}песни{%else%}группы{%endif%}, которую вы ввели: {{param}}</h3>
+{% endblock %}

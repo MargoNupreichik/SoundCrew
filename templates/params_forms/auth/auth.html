@@ -1,0 +1,22 @@
+{% extends "../forms_wrapper.html" %}
+
+{% block form_title %}АВТОРИЗАЦИЯ{% endblock %}
+
+{% block content %}
+<form id="login_form" class="auth_form" method="POST" action="/login">
+    <div class="auth">
+        <h3>АВТОРИЗАЦИЯ</h3>
+    </div>
+    <div class="group">
+        <label for="login_elem" class="labels">ЛОГИН</label>
+        <input type="text" name="log" id="login_elem" class="input_labels" required minlength="4">
+    </div>
+    <div class="group">
+        <label for="password_elem" class="labels">ПАРОЛЬ</label>
+        <input type="password" name="passw" id="password_elem" class="input_labels" required minlength="8">
+    </div>
+    <div class="button_container">
+        <button type="submit" name="auth_button">ВОЙТИ</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,98 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 200px;
+  background: #f9f5ff;
+}
+
+.wrapper {
+  align-content: center;
+}
+
+form {
+  background: #e9d7fe;
+  border-radius: 24px;
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  font-family: "Anonymous Pro";
+  font-style: normal;
+  font-weight: 200;
+
+  color: #42307d;
+
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.auth_form {
+  width: 400px;
+  height: 390px;
+  left: 50%;
+  margin: -200px -50px -50px -200px;
+}
+
+.param_form {
+  width: 400px;
+  height: 160px;
+  left: 50%;
+  margin: -200px -50px -50px -200px;
+}
+
+.auth {
+  height: 60px;
+  text-align: center;
+}
+
+h3 {
+  height: 20px;
+  font-size: 48px;
+}
+
+.group {
+  padding-bottom: 5px;
+}
+
+.labels {
+  font-size: 24px;
+  height: fit-content;
+  display: block;
+  margin: 10px 3px 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #d3b8fc;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+.button_container {
+  display: grid;
+  justify-content: center;
+}
+
+button {
+  width: 170px;
+  height: 51px; 
+
+  background-color: #53389E;
+  color: #FFFFFF;
+
+  font-family: "Anonymous Pro";
+  font-size: 32px;
+  border-radius: 7px;
+  border-color: #53389E;
+  cursor: pointer;
+}
+
+button:hover {
+    background-color: #4a3274;
+}

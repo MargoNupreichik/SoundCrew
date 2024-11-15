@@ -1,0 +1,13 @@
+{% extends "forms_wrapper.html" %}
+
+{% block form_title %}ПЕСНЯ{% endblock %}
+
+{% block form_block %}
+<form method="post" id="song_form" class="param_form">
+    <label for="song_name" class="labels">ВВЕДИТЕ НАЗВАНИЕ ПЕСНИ</label>
+    <input type="text" name="song" id="song_name" class="input_labels" required minlength="1">
+    <div class="button_container">
+        <button type="submit" name="song_button">ЗАПРОС</button>
+    </div>
+</form>
+{% endblock %}

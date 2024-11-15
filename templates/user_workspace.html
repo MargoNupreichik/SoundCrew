@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block us_title %}
+{% if literal=='a' %}
+Вы - администратор
+{% elif literal=='m'%}
+Вы - менеджер
+{% else %}
+Ошибка авторизации
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<h3>Выберите интересующий вас пункт</h3>
+<ul class="profile_list">
+    {% for i in range(phrases|length) %}
+        <li><a href="{{ liter }}_{{ i }}">{{ phrases[i] }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
