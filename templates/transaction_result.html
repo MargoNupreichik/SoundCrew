@@ -6,5 +6,7 @@
 
 {% block content %}
 <h3>Ваш запрос: {{ phrase }}</h3>
-<h3>Название {% if param_type=='song'%}песни{%else%}группы{%endif%}, которую вы ввели: {{param}}</h3>
+{% if param_type is defined %}
+<h3>Запрос {% if param_res==False %}не{%endif%} выполнен, повторите попытку</h3>
+{% endif %}
 {% endblock %}

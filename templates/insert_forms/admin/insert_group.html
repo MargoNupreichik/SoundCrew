@@ -1,0 +1,23 @@
+{% extends "forms_wrapper.html" %}
+
+{% block form_title %}НОВАЯ ГРУППА{% endblock %}
+
+{% block form_block %}
+<form method="post" id="group_insert_form" class="param_form">
+    <div class="group">
+        <label for="group_name" class="labels">ВВЕДИТЕ НАЗВАНИЕ ГРУППЫ</label>
+        <input type="text" name="group" id="group_name" class="input_labels" required minlength="1">
+    </div>
+    <div class="group">
+        <label for="foundation_date" class="labels">ВВЕДИТЕ ДАТУ ОСНОВАНИЯ ГРУППЫ</label>
+        <input type="date" name="f_date" id="foundation_date" class="input_labels">
+    </div>
+    <div class="group">
+        <label for="country_name" class="labels">ВВЕДИТЕ СТРАНУ ГРУППЫ</label>
+        <input type="text" name="country" id="country_name" class="input_labels" required minlength="1">
+    </div>
+    <div class="button_container">
+        <button type="submit" name="new_group_button">ЗАПРОС</button>
+    </div>
+</form>
+{% endblock %}

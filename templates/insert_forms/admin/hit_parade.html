@@ -1,0 +1,19 @@
+{% extends "forms_wrapper.html" %}
+
+{% block form_title %}ПОЛОЖЕНИЕ ГРУППЫ{% endblock %}
+
+{% block form_block %}
+<form method="post" id="group_insert_form" class="param_form">
+    <div class="group">
+        <label for="group_name" class="labels">ВВЕДИТЕ НАЗВАНИЕ ГРУППЫ</label>
+        <input type="text" name="group" id="group_name" class="input_labels" required minlength="1">
+    </div>
+    <div class="group">
+        <label for="hit_index" class="labels">ВВЕДИТЕ НОВОЕ ПОЛОЖЕНИЕ ГРУППЫ В ХИТ-ПАРАДЕ</label>
+        <input type="number" name="hit_i" id="hit_index" class="input_labels" required min=1>
+    </div>
+    <div class="button_container">
+        <button type="submit" name="hit_parade_button">ЗАПРОС</button>
+    </div>
+</form>
+{% endblock %}
