@@ -1,0 +1,112 @@
+body {
+  background: #f9f5ff;
+  font-family: "Anonymous Pro";
+  font-style: normal;
+  font-weight: 200;
+  font-size: 24px;
+
+  color: #42307d;
+  padding: 15px;
+  margin: 15px;
+}
+
+.labels {
+  font-size: 24px;
+  height: fit-content;
+  display: block;
+  margin: 10px 3px 5px;
+}
+
+.tab {
+  display: none;
+}
+
+.tab-buttons {
+  margin-bottom: 20px;
+}
+
+.tab-buttons button {
+  margin-right: 10px;
+}
+
+.active {
+  display: block;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: center;
+}
+
+#addRow, #removeRow {
+  width: 80px;
+  font-size: 14px;
+}
+
+#addRow {
+  height: 40px;
+}
+
+#removeRow {
+  height: 25px;
+}
+
+.labels {
+  font-size: 24px;
+  height: fit-content;
+  display: block;
+  margin: 10px 3px 5px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #d3b8fc;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+button {
+  height: 35px;
+
+  background-color: #53389e;
+  color: #ffffff;
+
+  font-family: "Anonymous Pro";
+  font-size: 16px;
+  border-radius: 7px;
+  border-color: #53389e;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4a3274;
+}
+
+.removeButton {
+  width: 100px;
+}
+
+.addButton {
+  width: 230px;
+}
+
+#insert_group {
+  margin-top: 15px;
+}

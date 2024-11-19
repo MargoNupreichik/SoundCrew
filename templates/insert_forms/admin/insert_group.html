@@ -1,23 +1,143 @@
-{% extends "forms_wrapper.html" %}
+<!DOCTYPE html>
+<html lang="ru">
 
-{% block form_title %}НОВАЯ ГРУППА{% endblock %}
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css"
+        href="{{ url_for('static',filename='css_files/insert_group_styles.css') }}" />
+    <title>НОВАЯ ГРУППА</title>
+</head>
 
-{% block form_block %}
-<form method="post" id="group_insert_form" class="param_form">
-    <div class="group">
-        <label for="group_name" class="labels">ВВЕДИТЕ НАЗВАНИЕ ГРУППЫ</label>
-        <input type="text" name="group" id="group_name" class="input_labels" required minlength="1">
+<body>
+    <div class="tab-buttons">
+        <button onclick="showTab('group')">ГРУППА</button>
+        <button onclick="showTab('members')">УЧАСТНИКИ</button>
+        <button onclick="showTab('songs')">ПЕСНИ</button>
     </div>
-    <div class="group">
-        <label for="foundation_date" class="labels">ВВЕДИТЕ ДАТУ ОСНОВАНИЯ ГРУППЫ</label>
-        <input type="date" name="f_date" id="foundation_date" class="input_labels">
-    </div>
-    <div class="group">
-        <label for="country_name" class="labels">ВВЕДИТЕ СТРАНУ ГРУППЫ</label>
-        <input type="text" name="country" id="country_name" class="input_labels" required minlength="1">
-    </div>
-    <div class="button_container">
-        <button type="submit" name="new_group_button">ЗАПРОС</button>
-    </div>
-</form>
-{% endblock %}
+    <form id="mainForm" method="POST">
+        <div id="group" class="tab active">
+            <div class="group">
+                <label for="group_name" class="labels">ВВЕДИТЕ НАЗВАНИЕ ГРУППЫ</label>
+                <input type="text" name="group" id="group_name" class="input_labels" required minlength="1" />
+            </div>
+            <div class="group">
+                <label for="foundation_date" class="labels">ВВЕДИТЕ ДАТУ ОСНОВАНИЯ ГРУППЫ</label>
+                <input type="date" name="f_date" id="foundation_date" class="input_labels" />
+            </div>
+            <div class="group">
+                <label for="country_name" class="labels">ВВЕДИТЕ СТРАНУ ГРУППЫ</label>
+                <input type="text" name="country" id="country_name" class="input_labels" required minlength="1" />
+            </div>
+        </div>
+        <div id="members" class="tab">
+            <table id="membersTable">
+                <thead>
+                    <tr>
+                        <th>ФИО</th>
+                        <th>ВОЗРАСТ</th>
+                        <th>ПОЗИЦИЯ</th>
+                        <th>ДЕЙСТВИЯ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="fio[]" required /></td>
+                        <td><input type="number" name="age[]" required /></td>
+                        <td><input type="text" name="position[]" required /></td>
+                        <td>
+                            <button class="removeButton" id="removeRow1" disabled="True" type="button"
+                                onclick="removeRow(this)">
+                                УДАЛИТЬ
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <button id="addRow_1" class="addButton" type="button" onclick="addRow1()">
+                ДОБАВИТЬ СТРОКУ
+            </button>
+        </div>
+        <div id="songs" class="tab">
+            <table id="songsTable">
+                <thead>
+                    <tr>
+                        <th>НАЗВАНИЕ</th>
+                        <th>ДАТА СОЗДАНИЯ</th>
+                        <th>КОМПОЗИТОР</th>
+                        <th>АВТОР ТЕКСТА</th>
+                        <th>ДЕЙСТВИЯ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="title[]" required /></td>
+                        <td><input type="date" name="create_date[]" required /></td>
+                        <td><input type="text" name="composer[]" required /></td>
+                        <td><input type="text" name="textwriter[]" required /></td>
+                        <td>
+                            <button id="removeRow2" class="removeButton" disabled="True" type="button"
+                                onclick="removeRow(this)">
+                                УДАЛИТЬ
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <button id="addRow_2" class="addButton" type="button" onclick="addRow2()">
+                ДОБАВИТЬ СТРОКУ
+            </button>
+        </div>
+        <button type="submit" id="insert_group">ОТПРАВИТЬ</button>
+    </form>
+
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll(".tab");
+            tabs.forEach((tab) => {
+                tab.classList.remove("active");
+            });
+
+            const activeTab = document.getElementById(tabName);
+            activeTab.classList.add("active");
+        }
+
+        function addRow1() {
+            const tableBody = document
+                .getElementById("membersTable")
+                .querySelector("tbody");
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+            <td><input type="text" name="fio[]" required></td>
+            <td><input type="number" name="age[]" required></td>
+            <td><input type="text" name="position[]" required></td>
+            <td><button type="button" class="removeButton" onclick="removeRow(this)">УДАЛИТЬ</button></td>
+        `;
+            tableBody.appendChild(newRow);
+        }
+
+        function addRow2() {
+            const tableBody = document
+                .getElementById("songsTable")
+                .querySelector("tbody");
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+            <td><input type="text" name="title[]"></td>
+            <td><input type="date" name="create_date[]"></td>
+            <td><input type="text" name="composer[]"></td>
+            <td><input type="text" name="textwriter[]"></td>
+            <td><button type="button" class="removeButton" onclick="removeRow(this)">УДАЛИТЬ</button></td>
+        `;
+            tableBody.appendChild(newRow);
+        }
+
+        function removeRow(button) {
+            const row = button.closest("tr");
+            row.remove();
+        }
+    </script>
+</body>
+
+</html>
