@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block us_title %}
-Результат запроса
+РеЕЗУЛЬТАТ ЗАПРОСА
 {% endblock %}
 
 {% block content %}
 <h3>Ваш запрос: {{ phrase }}</h3>
-{% if param_type is defined %}
-<h3>Запрос {% if param_res==False %}не{%endif%} выполнен, повторите попытку</h3>
+{% if param is defined %}
+<h3>Запрос {% if param==False %}не{%endif%} выполнен{% if param==False %}, убедитесь, что вы не пытаетесь создать дубли, и повторите снова{% endif %}.</h3>
 {% endif %}
 {% endblock %}
