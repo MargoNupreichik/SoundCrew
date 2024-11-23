@@ -43,16 +43,23 @@ def ask_info2(index):
     phrase, param_name = get_phrase_and_param_m(index)
     
     param = ''
+    param_type = 'group'
     request_dict = request.form
     if 'group' in request_dict:
         param = request_dict['group']
     elif 'song' in request_dict:
+        param_type = 'song'
         param = request_dict['song']
     
+    output_type = 'line'
+    columns = []
     if index == 0:
         result = dw.Manager.get_group_info(group_name=param)
     elif index == 1:
         result = dw.Manager.most_popular_band_repertoire()
+        output_type = 'table'
+        param = result.pop(0)
+        columns = ['Название песни']
     elif index == 2:
         result = dw.Manager.get_song_info(song=param)
     elif index == 3:
@@ -61,8 +68,11 @@ def ask_info2(index):
         result = dw.Manager.get_ticket_price(band=param)
     elif index == 5:
         result = dw.Manager.get_members_info(band=param)
-    
-    return render_template("transaction_output.html", param=param, phrase=phrase, param_type=param_name, result=result)
+        output_type = 'table'
+        columns = ['ФИО', 'Возраст', 'Роль']
+    print(result)
+    return render_template("transaction_output.html", param=param, phrase=phrase, 
+                           result=result, output_type=output_type, columns=columns, param_type=param_type)
 
 @app.route('/a_<int:index>', methods=['get'])
 def insert_info(index):
@@ -111,11 +121,14 @@ def insert_info2(index):
 @app.route('/p_<int:index>')
 def print_info(index):
     phrase = get_phrase_p(index)
+    output_type = 'table'
     if index == 0:
         result = dw.HelpInformation.best_hit_parade_groups()
+        columns = ['Название группы', 'Положение в хит-параде']
     elif index == 1:
         result = dw.HelpInformation.tour_report()
-    return render_template("transaction_output.html", phrase=phrase, result=result)
+        columns = ['Название группы', 'Название тура', 'Дата начала', 'Дата окончания', 'Цена билета']
+    return render_template("transaction_output.html", param='', phrase=phrase, result=result, output_type=output_type, columns=columns)
 
 # Вспомогательные функции (часть менеджера)
 def get_phrase_and_param_m(index):

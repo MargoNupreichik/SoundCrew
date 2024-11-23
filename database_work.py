@@ -16,7 +16,12 @@ class Manager():
         if result == None:
             return None
         
-        return list(result)
+        result = list(result)
+        result_dict = {'Страна': result[1],
+                       'Дата создания': result[2],
+                       'Положение в хит-параде': result[3]}
+        
+        return result_dict
     
     # # Репертуар наиболее популярной группы
     @staticmethod
@@ -42,7 +47,7 @@ class Manager():
             
             fixed_result = [band]
             for song in result:
-                fixed_result.append(list(song)[0])       
+                fixed_result.append(list(song))       
         
         return fixed_result
     
@@ -72,7 +77,12 @@ class Manager():
         
             result.insert(0, connection.execute(text(band_name_query), params).fetchone()[0])
         
-        return result
+        result_dict = {'Название группы': result[0],
+                       'Дата создания': result[2],
+                       'Композитор': result[3],
+                       'Автор текста': result[4]}
+        
+        return result_dict
         
     # Сведения о группе (место и продолжительность гастролей)
     @staticmethod
@@ -88,8 +98,15 @@ class Manager():
             result = connection.execute(text(query), params).fetchone()
             if result == None:
                 return None
+            result = list(result)
         
-        return list(result)
+        result_dict = {'Название тура': result[1],
+                       'Дата начала': result[2],
+                       'Продолжительность в днях': result[3],
+                       'Дата окончания': result[4],
+                       'Место': result[5]}
+        
+        return result_dict
     
     # 'Сведения о группе (цена билета на концерт)'
     @staticmethod
@@ -104,12 +121,14 @@ class Manager():
             params = {"group_name": band}
             result = connection.execute(text(query_text), params).fetchone()
         
-        if result:
-            result = list(result)
-        else:
-            result = None
+        if result == None:
+            return None
+        result = list(result)
         
-        return result
+        result_dict = {'Название тура': result[1],
+                       'Место': result[2],
+                       'Цена билета': result[3]}
+        return result_dict
         
     # 'Сведения о группе (состав исполнителей, их возраст и амплуа)'
     @staticmethod
@@ -124,7 +143,6 @@ class Manager():
             
             if result:
                 description = list()
-                description.append(band)
                 for row in result:
                     description.append(list(row))
             else:
@@ -163,11 +181,9 @@ class HelpInformation:
             result = connection.execute(text(query_text)).fetchall()
         
         if result:
+            group_list = list()
             for row in result:
-                group_list = list()
-                group_list.append(group_list)
-                for row in result:
-                    group_list.append(list(row))
+                group_list.append(list(row))
         else:
             return None
         

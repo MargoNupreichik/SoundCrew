@@ -7,5 +7,35 @@
 {% block content %}
 <h3>Ваш запрос: {{ phrase }}</h3>
 <h3>Результат:</h3>
-{{ result }}
+{% if result != None %}
+    {% if param != '' %}
+        <p>Название {% if param_type == 'group' %}группы{%elif param_type == 'song' %}песни{% endif %}: {{ param }}</p>
+    {% endif %}
+    {% if output_type == 'table' %}
+        <table id="res">
+            <thead>
+                <tr>
+                    {% for col in columns %}
+                    <th>{{ col }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in result %}
+                <tr>
+                    {% for value in row %}
+                    <th>{{ value }}</th>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>    
+        {% elif output_type == 'line' %}
+            {% for line_key, line_value in result.items() %}
+                <p>{{ line_key }}: {{ line_value }}</p>
+            {% endfor %}
+        {% endif %}
+{% else %}
+<p>Данные не найдены.</p>
+{% endif %}
 {% endblock %}
